@@ -14,6 +14,7 @@ import static javafx.scene.input.KeyEvent.KEY_PRESSED;
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
 public class JavaFXApp extends Application {
+    private static final Font BOLD = new Font("System Bold", 18.0f);
     private static final String PLUS = "+";
     private static final String MULTIPLY = "*";
     private static final String DIVIDE = "/";
@@ -47,16 +48,10 @@ public class JavaFXApp extends Application {
         int number2 = getNumberFromTextField(txtNumber2);
 
         switch(operator) {
-            case PLUS:
-                result = computeAdd(number1, number2);
-                break;
-            case MULTIPLY:
-                result = computeMultiply(number1, number2);
-                break;
-            case DIVIDE:
-                result = computeDivide(number1, number2);
-                break;
-            default: result = 0;
+            case PLUS -> result = computeAdd(number1, number2);
+            case MULTIPLY -> result = computeMultiply(number1, number2);
+            case DIVIDE -> result = computeDivide(number1, number2);
+            default -> result = 0;
         }
 
         this.txtResult.setText(String.valueOf(result));
@@ -92,7 +87,7 @@ public class JavaFXApp extends Application {
         button.setPrefWidth(width);
         button.setLayoutX(x);
         button.setLayoutY(y);
-        button.setFont(new Font("System Bold", 18.0));
+        button.setFont(BOLD);
         button.addEventHandler(MOUSE_CLICKED, this.mouseHandler);
         button.addEventHandler(KEY_PRESSED, this.keyHandler);
         this.rootPane.getChildren().add(button);
@@ -102,7 +97,7 @@ public class JavaFXApp extends Application {
     public void start(Stage primaryStage) {
         this.rootPane = new Pane();
         this.rootPane.setMinSize(500,205);
-        addLabel("Getal1", 161, 71, 10, 0);
+        addLabel("Getal 1", 161, 71, 10, 0);
         this.txtNumber1 = addTextField("Voer hier het eerste getal in...", true, 310, 181, 15);
         addLabel("Getal 2", 161, 71, 10, 40);
         this.txtNumber2 = addTextField("Voer hier het tweede getal in...", true, 310, 181, 55);
